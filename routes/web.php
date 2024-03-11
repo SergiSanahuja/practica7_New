@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TusArticulosController;
+use App\Http\Controllers\CrearArticulo;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,7 +36,14 @@ Route::apiResource("/TusArticulos", TusArticulosController::class);
 Route::get('/TusArticulos', [TusArticulosController::class, 'index'])
     ->name('TusArticulos');
 
-Route::resource('CrearArticulo', CrearArticulo::class);
+
+
+Route::get('CrearArticulo', [CrearArticulo::class, 'create'])
+            ->name('CrearArticulo');
+
+Route::post('CrearArticulo', [CrearArticulo::class, 'store']);
+
+// Route::apiResource('/CrearArticulo', CrearArticulo::class);
 
 Route::apiResource("/home", HomeController::class);
 require __DIR__.'/auth.php';

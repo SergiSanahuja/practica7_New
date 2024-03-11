@@ -12,7 +12,21 @@ class Articles extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
     protected $table = 'articles';
+    public $timestamps = false;
+
   
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'id',
+        'descripcio',
+        'usuari',
+        'Titul',
+    ];
 
    
 }
