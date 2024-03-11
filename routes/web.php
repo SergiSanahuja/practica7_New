@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TusArticulosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,8 +30,18 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+Route::apiResource("/TusArticulos", TusArticulosController::class);
+Route::get('/TusArticulos', [TusArticulosController::class, 'index'])
+    ->name('TusArticulos');
+
+Route::resource('CrearArticulo', CrearArticulo::class);
+
+Route::apiResource("/home", HomeController::class);
 require __DIR__.'/auth.php';
 
-Auth::routes();
+
+
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

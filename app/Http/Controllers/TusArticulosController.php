@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class HomeController extends Controller
+class TusArticulosController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -27,8 +27,10 @@ class HomeController extends Controller
     public function index()
     {
         // $articles = Articles::where('usuari', auth()->id())->get();
-        $articles = DB::table('articles')->simplePaginate(5);
-        return view('home', compact('articles'));
+       
+        $articles = Articles::where('usuari', auth()->id())->simplePaginate(5);
+
+        return view('TusArticulos', compact('articles'));
     }
 
     public function show($id){

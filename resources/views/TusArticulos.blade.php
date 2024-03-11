@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Articles') }}</div>
+                <div class="card-header">{{ __('Els teus articles') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -17,11 +17,11 @@
 
                 {{-- agafar els articles qeu tenen la id del usuari actual --}}
                 <div class="card-body">
-                    <h2>All articles</h2>
+                    <h2>Els teus articles</h2>
                     <ul>
                         @foreach ($articles as $article)
                             <li>
-                                <a href="{{ route('home.show', $article->descripcio) }}">{{ $article->descripcio }}</a>
+                                <a href="{{ route('TusArticulos.show', $article->descripcio) }}">{{ $article->descripcio }}</a>
                                 {{-- {{$article->descripcio}} --}}
                             </li>
                         @endforeach
