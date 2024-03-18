@@ -32,7 +32,13 @@ class HomeController extends Controller
     }
 
     public function show($id){
-        return $id;
+
+        // $articles = Articler::findorFail($id);
+        if (Articles::findorFail($id)->usuari != auth()->id()) {
+            return redirect('home');
+        }
+
+        return view('porfoli.show', ['article'=> Articles::findorFail($id)]);
     }
 
 

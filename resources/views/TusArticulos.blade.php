@@ -20,11 +20,11 @@
                     <h2>Els teus articles</h2>
                     <ul>
                         @foreach ($articles as $article)
-                            <li>
-                                <a href="{{ route('TusArticulos.show', $article->descripcio) }}">{{ $article->descripcio }}</a>
-                                {{-- {{$article->descripcio}} --}}
-                            </li>
-                        @endforeach
+                        <li>
+                            <a href="{{ route('home.show', $article->id) }}">{{ $article->descripcio }}</a>
+                            {{-- {{$article->descripcio}} --}}  
+                        </li>
+                    @endforeach
 
 
                     </ul>

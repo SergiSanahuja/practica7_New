@@ -35,7 +35,7 @@ class TusArticulosController extends Controller
     }
 
     public function show($id){
-        return $id;
+        return view('porfoli.show', ['article'=> Articles::findorFail($id)]);
     }
 
 

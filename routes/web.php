@@ -37,11 +37,11 @@ Route::get('/TusArticulos', [TusArticulosController::class, 'index'])
     ->name('TusArticulos');
 
 
+    
+    Route::get('CrearArticulo', [CrearArticulo::class, 'create'])
+                ->name('CrearArticulo');
 
-Route::get('CrearArticulo', [CrearArticulo::class, 'create'])
-            ->name('CrearArticulo');
-
-Route::post('CrearArticulo', [CrearArticulo::class, 'store']);
+    Route::post('CrearArticulo', [CrearArticulo::class, 'store']);
 
 // Route::apiResource('/CrearArticulo', CrearArticulo::class);
 
