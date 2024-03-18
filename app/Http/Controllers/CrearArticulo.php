@@ -21,6 +21,43 @@ class CrearArticulo extends Controller{
        return view('create');
    }
 
+
+   public function update($id, Request $request)
+   {
+    try{
+
+        $request->validate([
+            'content' => ['required', 'string', 'max:255'],
+        ],);
+
+
+
+        $article = Articles::find($id);
+
+        if(!$article){
+            return redirect()->back()->with('error', 'No s\'ha trobat l\'article');
+        }
+
+        if($article->usuari != auth()->id()){
+            return redirect()->back()->with('error', 'No tens permisos per a editar aquest article');
+        }
+
+        $article->update([
+            
+            'descripcio' => $request->content,
+        ]);
+
+        //RouteServiceProvider es una classe que ens permet redirigir a una ruta amb el nom que li passem
+        return redirect()->route('home')->with('success', 'Article actualitzat correctament');
+        
+        // return view('home')->with('success', 'Article actualitzat correctament');      
+    }catch(\Exception $e){
+        return redirect()->route('home')->with('error', 'Article actualitzat malament'.$e->getMessage());
+        //   return view('home')->with('error', $e->getMessage());
+    }
+
+   }
+
    /**
     * Handle an incoming registration request.
     *
@@ -50,6 +87,8 @@ class CrearArticulo extends Controller{
              'descripcio' => $request->content,
              'usuari' => auth()->id(),
         ]);
+
+      
     
         event(new Registered($article));
 

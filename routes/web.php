@@ -37,13 +37,16 @@ Route::get('/TusArticulos', [TusArticulosController::class, 'index'])
     ->name('TusArticulos');
 
 
-    
-    Route::get('CrearArticulo', [CrearArticulo::class, 'create'])
-                ->name('CrearArticulo');
 
-    Route::post('CrearArticulo', [CrearArticulo::class, 'store']);
+Route::get('CrearArticulo', [CrearArticulo::class, 'create'])
+            ->name('CrearArticulo');
+
+Route::post('CrearArticulo', [CrearArticulo::class, 'store']);
 
 // Route::apiResource('/CrearArticulo', CrearArticulo::class);
+
+//middleware('auth') -> per a que només pugui accedir si està autenticat
+Route::post('editar/{id}', [CrearArticulo::class, 'update'])->name('editar');
 
 Route::apiResource("/home", HomeController::class);
 require __DIR__.'/auth.php';
