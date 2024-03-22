@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <h1>Create a new post</h1>
             @if (session('error'))
-                <div class="alert alert-success">
+                <div class="alert alert-danger">
                     {{ session('error') }}
                 </div>
             @endif
@@ -20,7 +20,7 @@
                     <label for="title">Title</label>
                     <input type="text" name="title" id="title" class="form-control">
                 </div>
-                <div class="form-group
+                <div class="form-group mb-2
                 ">
                     <label for="content">Content</label>
                     <textarea name="content" id="content" class="form-control"></textarea>

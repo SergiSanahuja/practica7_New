@@ -11,9 +11,7 @@
                     <div class="alert alert-danger">
                         {{ session('error') }}
                     </div>
-                @endif
-
-                    
+                @endif              
 
                 <div class="card-body">
                     @if (session('status'))
@@ -29,7 +27,7 @@
                     <ul>
                         @foreach ($articles as $article)
                             <li>
-                                <a href="{{ route('home.show', $article->id) }}">{{ $article->Titul }}</a>
+                                <a href="{{ route('home.show', $article->id) }}">{{ $article->Titul }}: {{$article->descripcio}}</a>
                                 {{-- {{$article->descripcio}} --}}  
                             </li>
                         @endforeach

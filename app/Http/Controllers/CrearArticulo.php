@@ -8,7 +8,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Providers\RouteServiceProvider;
-use Dotenv\Exception\ValidationException;
+// use Dotenv\Exception\ValidationException;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 use function Laravel\Prompts\alert;
@@ -27,7 +28,7 @@ class CrearArticulo extends Controller{
     try{
 
         $request->validate([
-            'content' => ['required', 'string', 'max:255'],
+            'content' => ['required', 'string', 'max:225'],
         ],);
 
 
@@ -48,14 +49,15 @@ class CrearArticulo extends Controller{
         ]);
 
         //RouteServiceProvider es una classe que ens permet redirigir a una ruta amb el nom que li passem
-        return redirect()->route('home')->with('success', 'Article actualitzat correctament');
+        return redirect()->back()->with('success', 'Article actualitzat correctament');
         
         // return view('home')->with('success', 'Article actualitzat correctament');      
     }catch(\Exception $e){
-        return redirect()->route('home')->with('error', 'Article actualitzat malament'.$e->getMessage());
-        //   return view('home')->with('error', $e->getMessage());
+        return redirect()->back()->with('error', 'Article actualitzat malament'.$e->getMessage());
+      
+    }catch(ValidationException $e){
+        return redirect()->back()->with('error', 'Article actualitzat malament'.$e->getMessage());
     }
-
    }
 
    /**
@@ -66,8 +68,8 @@ class CrearArticulo extends Controller{
    public function store(Request $request){
       try{
         $request->validate([
-             'title' => ['required', 'string', 'max:255'],
-             'content' => ['required', 'string', 'max:255'],
+             'title' => ['required', 'string', 'max:225'],
+             'content' => ['required', 'string', 'max:225'],
              
 
 

@@ -45,6 +45,12 @@ Route::post('CrearArticulo', [CrearArticulo::class, 'store']);
 
 // Route::apiResource('/CrearArticulo', CrearArticulo::class);
 
+Route::get('Profile', function () {
+    return view('profile');
+})->name('profile');
+
+Route::post('Profile', [ProfileController::class, 'update'])->name('profile.update');
+
 //middleware('auth') -> per a que només pugui accedir si està autenticat
 Route::post('editar/{id}', [CrearArticulo::class, 'update'])->name('editar');
 
