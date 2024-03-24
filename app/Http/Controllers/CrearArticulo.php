@@ -22,6 +22,26 @@ class CrearArticulo extends Controller{
        return view('create');
    }
 
+   public function destroy($id)
+   {
+       try{
+           $article = Articles::find($id);
+
+           if(!$article){
+               return redirect()->back()->with('error', 'No s\'ha trobat l\'article');
+           }
+
+           if($article->usuari != auth()->id()){
+               return redirect()->back()->with('error', 'No tens permisos per a eliminar aquest article');
+           }
+
+           $article->delete();
+
+           return redirect('home')->with('success', 'Article eliminat correctament');
+       }catch(\Exception $e){
+           return redirect()->back()->with('error', 'Article eliminat malament'.$e->getMessage());
+       }
+   }
 
    public function update($id, Request $request)
    {

@@ -54,6 +54,8 @@ Route::post('Profile', [ProfileController::class, 'update'])->name('profile.upda
 //middleware('auth') -> per a que només pugui accedir si està autenticat
 Route::post('editar/{id}', [CrearArticulo::class, 'update'])->name('editar');
 
+Route::get('Eliminar/{id}', [CrearArticulo::class, 'destroy'])->name('Eliminar');
+
 Route::apiResource("/home", HomeController::class);
 require __DIR__.'/auth.php';
 
