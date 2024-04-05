@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+<script src="https://www.google.com/recaptcha/api.js"></script>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -51,6 +53,20 @@
                             </div>
                         </div>
 
+                        {{-- @error('g-token','g-token')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror --}}
+                        @if(session('logTime') >= 3)
+                        <input type="hidden" name="g-token" id="recaptchaToken">
+                        <div class="g-recaptcha row mb-3"
+                                data-sitekey="6LfDdqwpAAAAAMGdoVTIPS5K-wY3Hbr1hQANUEfo"
+                                data-callback='onSubmit'
+                                data-action='submit' >Submit</div>
+                        @endif
+                    
+
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -70,4 +86,9 @@
         </div>
     </div>
 </div>
+<script>
+    function onSubmit(token) {
+        document.getElementById("recaptchaToken").value = token;
+    }
+</script>
 @endsection

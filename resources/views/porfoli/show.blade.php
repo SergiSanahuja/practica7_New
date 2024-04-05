@@ -26,7 +26,7 @@
 
     
     
-    <
+    
     <form action="{{route("editar",$article->id)}}" method="POST">
         @csrf
   

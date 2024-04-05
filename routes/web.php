@@ -52,7 +52,7 @@ Route::get('Profile', function () {
 Route::post('Profile', [ProfileController::class, 'update'])->name('profile.update');
 
 //middleware('auth') -> per a que només pugui accedir si està autenticat
-Route::post('editar/{id}', [CrearArticulo::class, 'update'])->name('editar');
+Route::post('editar/{id}', [CrearArticulo::class, 'update'])->name('ediatr');
 
 Route::get('Eliminar/{id}', [CrearArticulo::class, 'destroy'])->name('Eliminar');
 

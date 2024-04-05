@@ -25,6 +25,23 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+
+        $request->validate([
+            'g-token' => session('logTime') >= 3 ? 'required' : '',
+            
+        ],
+        [
+            'g-token.required' => 'Please verify that you are not a robot.'
+        ]);
+       
+        //Contara intents 
+        if(session('logTime')){
+           session( ['logTime' => session('logTime') + 1]);
+        }else{
+            session(['logTime' => 1
+        ]);
+        }
+
         $request->authenticate();
 
         $request->session()->regenerate();
